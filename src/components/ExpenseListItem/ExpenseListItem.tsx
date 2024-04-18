@@ -1,7 +1,7 @@
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 
-import { EXPENSE_PRIORITY, ExpenseListItemProps } from "../../domain/expenses";
+import { EXPENSE_PRIORITY, Expense } from "../../domain/expenses";
 
 export default function ExpenseListItem({
   id,
@@ -10,8 +10,8 @@ export default function ExpenseListItem({
   currency,
   amount,
   submitter,
-  department,
-}: ExpenseListItemProps) {
+  handlePress,
+}: Partial<Expense> & { handlePress: () => void }) {
   const iconName = (() => {
     switch (priority) {
       case EXPENSE_PRIORITY.HIGH:
@@ -24,18 +24,25 @@ export default function ExpenseListItem({
   })();
 
   return (
-    <View style={styles.wrapper}>
-      <Ionicons size={24} name={iconName} style={styles.priority} />
-      <View style={styles.expenseDetail}>
-        <Text>{summary}</Text>
-        <Text>
-          {`${currency}${amount}`} {`${submitter}, ${department} dpt.`}
-        </Text>
+    <TouchableHighlight
+      key={id}
+      underlayColor="lightgrey"
+      onPress={() => handlePress()}
+    >
+      <View style={styles.wrapper}>
+        <Ionicons size={24} name={iconName} style={styles.priority} />
+        <View style={styles.expenseDetail}>
+          <Text>{summary}</Text>
+          <Text>
+            {`${currency}${amount}`}{" "}
+            {`${submitter.name}, ${submitter.department} dpt.`}
+          </Text>
+        </View>
+        <View style={styles.chevronWrapper}>
+          <Ionicons size={24} name="chevron-forward" style={styles.chevron} />
+        </View>
       </View>
-      <View style={styles.chevronWrapper}>
-        <Ionicons size={24} name="chevron-forward" style={styles.chevron} />
-      </View>
-    </View>
+    </TouchableHighlight>
   );
 }
 

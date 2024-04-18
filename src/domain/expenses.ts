@@ -12,17 +12,6 @@ export type Expense = {
   lastAction: Date;
 };
 
-export type ExpenseListItemProps = {
-  id: number;
-  priority: EXPENSE_PRIORITY;
-  summary: string;
-  currency: string;
-  amount: number;
-  lastAction: Date;
-  submitter: string;
-  department: string;
-};
-
 export type User = {
   id: number;
   name: string;
@@ -44,3 +33,14 @@ export enum EXPENSE_PRIORITY {
   MEDIUM = "medium",
   LOW = "low",
 }
+
+export enum EXPENSE_ACTION {
+  APPROVE = "approve",
+  REJECT = "reject",
+  FLAG = "flag",
+}
+
+export type ExpenseAction = {
+  type: EXPENSE_ACTION;
+  id: number;
+};
