@@ -16,7 +16,7 @@ export default function MainContainer() {
             let iconName;
             let rn = route.name;
             if (rn === "home") {
-              iconName = focused ? "home" : "home-outline";
+              iconName = focused ? "list" : "list-outline";
             } else if (rn === "settings") {
               iconName = focused ? "settings" : "settings-outline";
             }
