@@ -1,24 +1,16 @@
-import { StatusBar } from "expo-status-bar";
-import { useTranslation } from "react-i18next";
-import { StyleSheet, Text, View } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ExpenseList from "../ExpenseList/ExpenseList";
+import { ExpensesProvider } from "../../../contexts/Expenses";
+import Expense from "../Expense/Expense";
 
-export default function HomeScreen({navigation}) {
-  const { t } = useTranslation("common");
-
+export default function HomeScreen() {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>{t("title")}</Text>
-      <Text>test</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ExpensesProvider>
+      <Stack.Navigator initialRouteName="Expenses List">
+        <Stack.Screen name="Expenses List" component={ExpenseList} />
+        <Stack.Screen name="Expense" component={Expense} />
+      </Stack.Navigator>
+    </ExpensesProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
