@@ -70,7 +70,7 @@ const MOCK_EXPENSES: Expense[] = [
   },
 ];
 
-export const ExpensesContext = createContext(null);
+export const ExpensesContext = createContext(MOCK_EXPENSES);
 
 export const ExpensesDispatchContext = createContext(null);
 
@@ -78,7 +78,7 @@ export function useExpenses() {
   return useContext(ExpensesContext) as Expense[];
 }
 
-export function useExpesnesDispatch() {
+export function useExpenesDispatch() {
   return useContext(ExpensesDispatchContext);
 }
 

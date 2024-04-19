@@ -5,11 +5,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import SettingsScreen from "./screens/Settings/SettingsScreen";
 import { useTranslation } from "react-i18next";
 import { SCREENS } from "./constants";
+import NavigationHeader from "../components/NavigationHeader/NavigationHeader";
+import { useExpenses } from "../contexts/Expenses";
+import { EXPENSE_STATUS } from "../domain/expenses";
 
 const Tabs = createBottomTabNavigator();
 
 export default function MainContainer() {
   const { t } = useTranslation("navigation");
+  const expenses = useExpenses();
+  const pendingExpensesCount = expenses.filter(
+    (expense) => expense.status === EXPENSE_STATUS.PENDING
+  ).length;
   return (
     <NavigationContainer>
       <Tabs.Navigator
@@ -17,19 +24,26 @@ export default function MainContainer() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
-            let rn = route.name;
-            if (rn === SCREENS.HOME) {
+            if (route.name === SCREENS.HOME) {
               iconName = focused ? "list" : "list-outline";
-            } else if (rn === SCREENS.SETTINGS) {
+            } else if (route.name === SCREENS.SETTINGS) {
               iconName = focused ? "settings" : "settings-outline";
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           headerShown: route.name !== SCREENS.HOME,
+          header: ({ options, route }) => {
+            return <NavigationHeader options={options} route={route} />;
+          },
+          title: t(route.name),
         })}
       >
-        <Tabs.Screen name={SCREENS.HOME} component={HomeScreen} />
+        <Tabs.Screen
+          name={SCREENS.HOME}
+          component={HomeScreen}
+          options={{ tabBarBadge: pendingExpensesCount }}
+        />
         <Tabs.Screen name={SCREENS.SETTINGS} component={SettingsScreen} />
       </Tabs.Navigator>
     </NavigationContainer>

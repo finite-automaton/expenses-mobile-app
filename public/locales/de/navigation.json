@@ -1,5 +1,6 @@
 {
-  "Expenses": "Auslagen",
-  "Expense": "Auslage",
-  "Settings": "Einstellungen"
+  "home": "Auslagen",
+  "expenses": "Auslagen",
+  "expense": "Auslage",
+  "settings": "Einstellungen"
 }

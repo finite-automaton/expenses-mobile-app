@@ -1,5 +1,6 @@
 {
-  "Expenses": "Expenses",
-  "Expense": "Expense",
-  "Settings": "Settings"
+  "home": "Expenses",
+  "expenses": "Expenses",
+  "expense": "Expense",
+  "settings": "Settings"
 }
