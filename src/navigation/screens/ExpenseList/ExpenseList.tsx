@@ -2,11 +2,14 @@ import { FlashList } from "@shopify/flash-list";
 
 import ExpenseListItem from "../../../components/ExpenseListItem/ExpenseListItem";
 import { useExpenses } from "../../../contexts/Expenses";
+import { useTranslation } from "react-i18next";
+import { SCREENS } from "../../constants";
 
 export default function ExpenseList({ navigation }) {
   const expenses = useExpenses();
+  const { t } = useTranslation("Navigation");
   function handlePress(id: number) {
-    navigation.navigate("Expense", { id });
+    navigation.navigate(SCREENS.EXPENSE, { id });
   }
 
   return (
