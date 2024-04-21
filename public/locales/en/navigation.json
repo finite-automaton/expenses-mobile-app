@@ -1,6 +1,8 @@
 {
   "home": "Expenses",
-  "expenses": "Expenses",
-  "expense": "Expense",
-  "settings": "Settings"
+  "pending_expenses": "Outstanding Expenses",
+  "pending_expense": "Expense",
+  "completed_expense": "Expense",
+  "settings": "Settings",
+  "completed_expenses": "Completed Expenses"
 }
