@@ -1,0 +1,15 @@
+{
+  "submittedBy": "Eingreicht von",
+  "submittedOn": "Eingreicht am",
+  "summary": "Zusammenfassung",
+  "amount": "Geldbetrag",
+  "priority": "Priorität",
+  "high": "Hohe",
+  "medium": "Mittlere",
+  "low": "Niedrige",
+  "approve": "Genehmigen",
+  "reject": "Ablehnen",
+  "note": "Hinweis",
+  "emptyStatePending": "Keine ausstehenden Auslagen",
+  "emptyStateCompleted": "Es wurden keine Auslangen bearbeitet"
+}

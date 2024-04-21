@@ -1,4 +1,11 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+
 import {
   EXPENSE_ACTION,
   EXPENSE_PRIORITY,
@@ -21,12 +28,14 @@ const MOCK_EXPENSES: Expense[] = [
     },
     purpose: "food",
     status: EXPENSE_STATUS.PENDING,
-    imgUrl: "",
+    imgUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ReceiptSwiss.jpg/1280px-ReceiptSwiss.jpg",
     priority: EXPENSE_PRIORITY.HIGH,
     amount: 50,
     currency: "£",
-    created: new Date("04-01-2024"),
-    lastAction: new Date("04-01-2024"),
+    created: new Date("2024-04-23"),
+    // created: new Date("04-01-2024"),
+    lastAction: new Date("2024-04-23"),
   },
   {
     id: 2,
@@ -41,12 +50,13 @@ const MOCK_EXPENSES: Expense[] = [
     },
     purpose: "food",
     status: EXPENSE_STATUS.PENDING,
-    imgUrl: "",
+    imgUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ReceiptSwiss.jpg/1280px-ReceiptSwiss.jpg",
     priority: EXPENSE_PRIORITY.MEDIUM,
     amount: 200,
-    currency: "£",
-    created: new Date("11-03-2024"),
-    lastAction: new Date("11-03-2024"),
+    currency: "CHF",
+    created: new Date("2024-03-11"),
+    lastAction: new Date("2024-03-11"),
   },
   {
     id: 3,
@@ -61,16 +71,17 @@ const MOCK_EXPENSES: Expense[] = [
     },
     purpose: "tooling",
     status: EXPENSE_STATUS.PENDING,
-    imgUrl: "",
+    imgUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/ReceiptSwiss.jpg/1280px-ReceiptSwiss.jpg",
     priority: EXPENSE_PRIORITY.LOW,
     amount: 34,
     currency: "£",
-    lastAction: new Date("11-03-2024"),
-    created: new Date("11-03-2024"),
+    lastAction: new Date("2024-04-12"),
+    created: new Date("2024-04-12"),
   },
 ];
 
-export const ExpensesContext = createContext(null);
+export const ExpensesContext = createContext(MOCK_EXPENSES);
 
 export const ExpensesDispatchContext = createContext(null);
 
@@ -78,15 +89,19 @@ export function useExpenses() {
   return useContext(ExpensesContext) as Expense[];
 }
 
-export function useExpesnesDispatch() {
+export function useExpensesDispatch() {
   return useContext(ExpensesDispatchContext);
 }
 
 export function ExpensesProvider({ children }) {
   const [expenses, dispatch] = useReducer(expensesReducer, MOCK_EXPENSES);
+  const [liveExpense, setLiveExpenses] = useState(expenses);
 
+  useEffect(() => {
+    setLiveExpenses(expenses);
+  }, [expenses]);
   return (
-    <ExpensesContext.Provider value={expenses}>
+    <ExpensesContext.Provider value={liveExpense}>
       <ExpensesDispatchContext.Provider value={dispatch}>
         {children}
       </ExpensesDispatchContext.Provider>

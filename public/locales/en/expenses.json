@@ -1,0 +1,15 @@
+{
+  "submittedBy": "Submitted by",
+  "submittedOn": "Submitted on",
+  "summary": "Summary",
+  "amount": "Amount",
+  "priority": "Priority",
+  "high": "High",
+  "medium": "Medium",
+  "low": "Low",
+  "approve": "Approve",
+  "reject": "Reject",
+  "note": "Note",
+  "emptyStatePending": "No pending expenses",
+  "emptyStateCompleted": "No expenses have been processed"
+}
